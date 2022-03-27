@@ -1,0 +1,48 @@
+.MODEL SMALL  
+
+.STACK 100H  
+
+.DATA
+    ; DEFINE YOUR VARIABLES HERE
+
+.CODE
+    MAIN PROC
+        
+        MOV AX, @DATA
+        MOV DS, AX
+        
+        ; YOUR CODE STARTS HERE
+           
+           mov AX,5
+           mov BX, 6
+           mov DX, 7
+           mov CX, 8
+           
+           
+           ; Adding two numbers
+           
+           add AX, BX
+           
+           ; Adding two other numbers
+           
+           add DX, CX 
+           
+           ;Swapping the results
+           
+           sub CX, CX
+           add CX, AX
+           sub AX, AX
+           add AX, DX
+           sub DX, DX
+           add DX, CX
+           
+           
+           
+        
+        ; YOUR CODE ENDS HERE
+        
+        MOV AX, 4C00H
+        INT 21H
+        
+    MAIN ENDP
+    END MAIN
