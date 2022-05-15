@@ -1,0 +1,22 @@
+Multiplication:
+
+1. when we are multiplying two 8 bits number, then we need to store one 8 bits number in AL and the other 8 bits number coulbe be stored in a variable or any source(ah,bl,bh etc). The result 
+   will be stored in AX
+
+2. when we are multiplying two 16 bits(word) number, then we need to store one 16 bits number in AX and the other 16 bits number coulbe be stored in a variable or any source(ah,bl,bh etc). The result
+   will be 32 bits and will be stored in Two different registers(AX,DX). MSB 16 bits will be stored in DX and the other 16 in AX.
+
+
+3. Define Variables:
+      var db 300      [Here 'var' is the varible name, 'db' is the byte(d=data,b=byte type and 300 is the value]
+      a dw 200        [Here 'a' is the varible name, 'dw' is the word(d=data,b=word type and 200 is the value] 
+
+
+
+Division:
+
+1. when we are dividing in byte form, then we need to store divident 16 bits number in AX and the divisor 8 bits number coulbe be stored in a variable or any source(ah,bl,bh etc). The 8 bits
+   quotient will be stored in AL and the 8 bits remainder is in AH.
+
+2. when we are dividing in word form, then we need to store divident 32 bits number in DX:AX and the divisor 16 bits number coulbe be stored in a variable or any source(ah,bl,bh etc). The 816 bits
+   quotient will be stored in AX and the 16 bits remainder is in DX.
