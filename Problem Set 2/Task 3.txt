@@ -1,0 +1,158 @@
+.MODEL SMALL 
+.STACK 100H 
+.DATA
+ ; DEFINE YOUR VARIABLES HERE
+ 
+ first db "Enter First Initial: $"
+ second db "Enter Second Initial: $"
+ third db "Enter Third Initial: $"
+ 
+.CODE
+ MAIN PROC
+ 
+ MOV AX, @DATA
+ MOV DS, AX
+ 
+ ; YOUR CODE STARTS HERE
+ 
+ 
+ 
+ ; showing output of first string
+ LEA dx,first
+ mov ah,9
+ int 21h
+ 
+ 
+ ; showing output of first initial
+ mov ah,1
+ int 21h
+ mov bl,al
+ 
+ 
+ 
+ 
+ 
+ 
+ ;adding a new line
+ MOV AH,2 ;display character function
+ MOV DL,0DH ;carriage return 
+ INT 21h ;execute carriage return 
+ MOV DL,0AH ;line feed
+ INT 21h ;execute line feed
+ 
+ 
+ 
+ 
+ ; showing output of second string
+ LEA dx,second
+ mov ah,9
+ int 21h
+ 
+ 
+ ; showing output of second initial
+ mov ah,1
+ int 21h 
+ mov bh,al
+ 
+ 
+ 
+ 
+ 
+ ;adding a new line
+ MOV AH,2 ;display character function
+ MOV DL,0DH ;carriage return 
+ INT 21h ;execute carriage return 
+ MOV DL,0AH ;line feed
+ INT 21h ;execute line feed
+ 
+ 
+ 
+ 
+ ; showing output of third string
+ LEA dx,third
+ mov ah,9
+ int 21h
+ 
+ 
+ ; showing output of third initial
+ mov ah,1
+ int 21h
+ mov cl,al
+ 
+ 
+ 
+ 
+ ;adding a new line
+ MOV AH,2 ;display character function
+ MOV DL,0DH ;carriage return 
+ INT 21h ;execute carriage return 
+ MOV DL,0AH ;line feed
+ INT 21h ;execute line feed
+ 
+ 
+ 
+ 
+ 
+ 
+ ;showing the initials in reverse order
+ 
+ 
+ ;showing third initial
+ mov dl,cl
+ mov ah,2
+ int 21h
+ 
+ 
+ 
+ ;adding a new line
+ MOV AH,2 ;display character function
+ MOV DL,0DH ;carriage return 
+ INT 21h ;execute carriage return 
+ MOV DL,0AH ;line feed
+ INT 21h ;execute line feed 
+ 
+ 
+ 
+ 
+ 
+ ;showing second initial
+ mov dl,bh
+ mov ah,2
+ int 21h
+ 
+ 
+ 
+ 
+ ;adding a new line
+ MOV AH,2 ;display character function
+ MOV DL,0DH ;carriage return 
+ INT 21h ;execute carriage return 
+ MOV DL,0AH ;line feed
+ INT 21h ;execute line feed
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ;showing first inital
+ mov dl,bl
+ mov ah,2
+ int 21h
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ; YOUR CODE ENDS HERE
+ 
+ MOV AX, 4C00H
+ INT 21H
+ 
+ MAIN ENDP
+ END MAIN
