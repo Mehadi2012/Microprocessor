@@ -1,0 +1,128 @@
+.MODEL SMALL 
+.STACK 100H 
+.DATA
+ ; DEFINE YOUR VARIABLES HERE
+ 
+ st db "The result is$"
+ 
+ 
+.CODE
+ MAIN PROC
+ 
+ MOV AX, @DATA
+ MOV DS, AX
+ 
+ ; YOUR CODE STARTS HERE
+ 
+ 
+ ;taking first input 
+ mov ah,1
+ int 21h
+ 
+ 
+ ;saving the first input
+ mov bx,ax
+ sub bh,bh
+ sub bl,30h ; to keep the original input value
+ 
+ 
+ 
+ ;taking second input
+ mov ah,1
+ int 21h
+ 
+ 
+ ;saving the second input
+ mov cl,al
+ sub cl,30h ; to keep the original input value
+ 
+ 
+ 
+ 
+ ;performing division(first input/second input)
+ mov ax,bx
+ div cl 
+ 
+ 
+ ;saving the quotient
+ mov bh,al
+ add bh, 30h
+ ;adding a new line
+ MOV AH,2 ;display character function
+ MOV DL,0DH ;carriage return 
+ INT 21h ;execute carriage return 
+ MOV DL,0AH ;line feed
+ INT 21h ;execute line feed
+ 
+ ;display output 
+ 
+ LEA dx,st
+ mov ah,9
+ int 21h
+ 
+ 
+ ;adding a new line
+ MOV AH,2 ;display character function
+ MOV DL,0DH ;carriage return 
+ INT 21h ;execute carriage return 
+ MOV DL,0AH ;line feed
+ INT 21h ;execute line feed
+ 
+ 
+ 
+ ;display output
+ mov dl,bh
+ mov ah,2
+ int 21h 
+ 
+ 
+ 
+ 
+ ;adding a new line
+ MOV AH,2 ;display character function
+ MOV DL,0DH ;carriage return 
+ INT 21h ;execute carriage return 
+ MOV DL,0AH ;line feed
+ INT 21h ;execute line feed
+ 
+ 
+ 
+ 
+ ;display first input
+ add bl,30h
+ mov dl,bl
+ mov ah,2
+ int 21h 
+ 
+ 
+ 
+ 
+ 
+ ; adding a new line
+ MOV AH,2 ;display character function
+ MOV DL,0DH ;carriage return 
+ INT 21h ;execute carriage return 
+ MOV DL,0AH ;line feed
+ INT 21h ;execute line feed
+ 
+ 
+ 
+ 
+ 
+ ;display second input 
+ add cl,30h
+ mov dl,cl
+ mov ah,2
+ int 21h
+ 
+ 
+ 
+ 
+ 
+ ; YOUR CODE ENDS HERE
+ 
+ MOV AX, 4C00H
+ INT 21H
+ 
+ MAIN ENDP
+ END MAIN
