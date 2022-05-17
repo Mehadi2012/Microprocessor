@@ -1,0 +1,107 @@
+.MODEL SMALL 
+.STACK 100H 
+.DATA
+ ; DEFINE YOUR VARIABLES HERE
+ 
+ first db "Enter First Hex Digit: $"
+ second db "Enter Second Hex Digit: $"
+ result db "In Decimal Difference is: $"
+ 
+.CODE
+ MAIN PROC
+ 
+ MOV AX, @DATA
+ MOV DS, AX
+ 
+ ; YOUR CODE STARTS HERE
+ 
+ 
+ 
+ ;showing output of First String
+ LEA dx,first
+ mov ah,9
+ int 21h
+ 
+ 
+ ;taking first hex digit
+ mov ah,1
+ int 21h
+ 
+ 
+ ;saving the first hex digit
+ mov bl,al
+ 
+ 
+ ;adding a new line
+ MOV AH,2 ;display character function
+ MOV DL,0DH ;carriage return 
+ INT 21h ;execute carriage return 
+ MOV DL,0AH ;line feed
+ INT 21h ;execute line feed 
+ 
+ 
+ 
+ 
+ 
+ ;showing output of Second String
+ LEA dx,first
+ mov ah,9
+ int 21h
+ 
+ 
+ ;taking Second hex digit
+ mov ah,1
+ int 21h 
+ 
+ 
+ 
+ ;saving the second hex digit
+ mov cl,al
+ 
+ 
+ 
+ 
+ ;adding a new line
+ MOV AH,2 ;display character function
+ MOV DL,0DH ;carriage return 
+ INT 21h ;execute carriage return 
+ MOV DL,0AH ;line feed
+ INT 21h ;execute line feed
+ 
+ 
+ 
+ 
+ 
+ ;performing subtraction between first and second hex digit
+ sub cl,bl
+ add cl,30h 
+ 
+ 
+ 
+ ;showing output of result string
+ LEA dx,result
+ mov ah,9
+ int 21h
+ 
+ mov dl,cl
+ mov ah,2
+ int 21h
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ; YOUR CODE ENDS HERE
+ 
+ MOV AX, 4C00H
+ INT 21H
+ 
+ MAIN ENDP
+ END MAIN
