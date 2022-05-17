@@ -1,0 +1,26 @@
+.MODEL SMALL
+.STACK 100H
+.DATA 
+a dw 10
+.CODE
+ MAIN PROC
+ MOV AX, @DATA
+ MOV DS, AX
+ 
+ ; YOUR CODE STARTS HERE
+ 
+ MOV ax,a
+ MOV bl,2
+ DIV bl 
+ MOV cx,ax
+ SUB dx,dx
+ Begin:
+ SUB dx, 1
+ LOOP Begin
+ 
+ ; YOUR CODE ENDS HERE
+ 
+ MOV AX, 4C00H
+ INT 21H
+ MAIN ENDP
+ END MAIN
