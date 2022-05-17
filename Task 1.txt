@@ -1,0 +1,47 @@
+.MODEL SMALL
+.STACK 100H
+.DATA 
+ 
+a dw 9
+b dw 1 
+ 
+.CODE
+ MAIN PROC
+ MOV AX, @DATA
+ MOV DS, AX
+ 
+ ; YOUR CODE STARTS HERE 
+ ; Storing 16 bit number
+ MOV dx,a 
+ MOV bx,b
+ 
+ SUB bx,bx
+ Begin: 
+ CMP dx,2
+ JLE End
+ MOV ax,dx
+ MOV cl,3
+ DIV cl 
+ MOV cl,0
+ SUB dx,1
+ 
+ CMP ah,cl
+ JE Comparison 
+ JMP Begin
+ End: 
+ JMP exit 
+ 
+ 
+ ; Adding the results
+ Comparison:
+ ADD bx,dx
+ ADD bx,1 ; Check bx for the output
+ JMP Begin
+ exit:
+ 
+ ; YOUR CODE ENDS HERE
+ 
+ MOV AX, 4C00H
+ INT 21H
+ MAIN ENDP
+ END MAIN
