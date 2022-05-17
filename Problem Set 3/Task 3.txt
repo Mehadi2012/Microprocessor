@@ -1,0 +1,95 @@
+.MODEL SMALL
+.STACK 100H
+.DATA 
+ s1 db "Press 1 for multiplication or press 2 for division $" 
+ a dw 20
+ 
+ 
+.CODE
+ MAIN PROC
+ MOV AX, @DATA
+ MOV DS, AX
+ 
+ ; YOUR CODE STARTS HERE 
+ 
+ 
+ 
+ ; Taking input
+ LEA dx,s1
+ MOV ah,9
+ INT 21h
+ MOV ah,1
+ INT 21h
+ MOV bl,al
+ SUB bl,30h 
+ 
+ 
+ 
+ ; adding a new line
+ MOV AH, 2
+ MOV DL, 0DH
+ INT 21H
+ MOV DL, 0AH
+ INT 21H
+ 
+ 
+ ; Selection of multiplication or division
+ CMP bl,1
+ JE Multiplication
+ CMP bl,2
+ JE Division
+ JMP exit
+ 
+ 
+ ; Performing Multiplication 
+ Multiplication:
+ MOV bx,a 
+ MOV dx,2 
+ MOV cx,dx
+ 
+ 
+ 
+ SUB dx,dx
+ 
+ 
+ 
+ SecondL:
+ ADD dx,bx ; check dx for the output
+ LOOP SecondL
+ 
+ 
+ JMP exit
+ 
+ 
+ 
+ 
+ ; Performing Division
+ Division:
+ MOV bx,a 
+ MOV dx,2 
+ MOV cx,dx 
+ 
+ 
+ FirstL:
+ CMP bx,cx
+ JE checker
+ CMP bx,cx
+ JLE End 
+ SUB bx,cx
+ ADD dx,cx ; check dx for the output 
+ JMP FirstL
+ End: 
+ MOV dx,bx
+ JMP exit
+ 
+ checker: 
+ SUB dx,dx
+ 
+ 
+ 
+ ; YOUR CODE ENDS HERE
+ EXIT:
+ MOV AX, 4C00H
+ INT 21H
+ MAIN ENDP
+ END MAIN
